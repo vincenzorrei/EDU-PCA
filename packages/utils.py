@@ -34,11 +34,10 @@ def transform_binary_2(df, binary_columns):
     return df
 
 
-def standard_OHE(df):
+def standard_OHE(df, show=True):
     """
     One-hot encodes the categorical columns in a DataFrame.
     """
-    print("Initial shape of df:", df.shape)
     categorical_columns = df.select_dtypes(
         include=["object", "category"]
     ).columns.tolist()
@@ -49,8 +48,9 @@ def standard_OHE(df):
     ]
 
     one_hot_encoded = encoder.fit_transform(df[cat_not_binary_columns])
-    print(cat_not_binary_columns)
-    print(categorical_binary_columns)
+    if show:
+        print(f"Categorical cols:{cat_not_binary_columns}")
+        print(f"Binary cols:{categorical_binary_columns}")
     one_hot_df = pd.DataFrame(
         one_hot_encoded, columns=encoder.get_feature_names_out(cat_not_binary_columns)
     )
