@@ -64,3 +64,4 @@ def standard_OHE(df, show=True):
     # df_encoded = pd.merge([df_binary, one_hot_df], axis=1)
     df_encoded = df_encoded.drop(cat_not_binary_columns, axis=1)
     return df_encoded
+
